@@ -1,0 +1,3 @@
+rootProject.name = 'SectionListView'
+
+include ':app'

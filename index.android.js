@@ -63,14 +63,14 @@ class ListViewRowsAndSections extends Component{
   constructor(prop){
     super(prop);
 
-    var ds = new ListView.DataSource({
-          sectionHeaderHasChanged: (r1, r2) => r1 !== r2,
-        rowHasChanged: (r1, r2) => r1 !== r2
-  });
-
+    var ds = new ListView.DataSource(
+        {
+          sectionHeaderHasChanged : (r1, r2) => r1 !== r2,
+          rowHasChanged           : (r1, r2) => r1 !== r2
+        }
+    );
     var {data, sectionIds} = this.renderListViewData(testData);
     this.state = {dataSource : ds.cloneWithRowsAndSections(data, sectionIds)};
-
   }
 
 
@@ -120,6 +120,17 @@ class ListViewRowsAndSections extends Component{
     data['Account'].push(users[12]);
     data['Account'].push(users[12]);
 
+    /*
+
+     data ={
+
+     'Marketing' : [user[0],user[1],user[2]],
+     'Sales'     : [user[3],user[4],user[5]],
+     'Account'   : [user[6],user[7],user[8]]
+     }
+     sectionIds = ['Marketing','Sales','Account']
+
+     */
     return {data, sectionIds};
   }
 
@@ -130,8 +141,8 @@ class ListViewRowsAndSections extends Component{
 
     return (
         <View style={styles.sectionHeader}>
-  <Text style={styles.sectionHeaderText}>{sectionId}</Text>
-    </View>
+           <Text style={styles.sectionHeaderText}>{sectionId}</Text>
+        </View>
   );
   }
 
